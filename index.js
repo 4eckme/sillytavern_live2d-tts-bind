@@ -267,13 +267,6 @@ async function playAudioData(audioJob) {
         console.debug('Starting TTS playback');
         audioElement.playbackRate = extension_settings.tts.playback_rate;
         audioElement.play();
-        /*
-        window.ccc = true;
-        setTimeout(function () {
-            window.ccc = false;
-        }, audioElement.duration * 1000);
-        
-        */
     });
 }
 
