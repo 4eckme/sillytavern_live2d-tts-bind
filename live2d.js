@@ -579,7 +579,7 @@ async function playTalk(character, text) {
         }
 
         if (abortTalking[character]) {
-            console.log(DEBUG_PREFIX,'Abort talking requested.');
+            console.debug(DEBUG_PREFIX,'Abort talking requested.');
             break;
         }
 
