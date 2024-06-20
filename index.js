@@ -271,21 +271,21 @@ async function playAudioData(audioJob) {
 }
 
 
+// start @4eckme
 setInterval(function () {
     if (!document.getElementById("tts_audio").paused) {
         window.live2d_tts_bind = true;
     } else {
         window.live2d_tts_bind = false;
     }
-}, 20)
-
+}, 20);
+// end @4eckme
 
 window['tts_preview'] = function (id) {
     const audio = document.getElementById(id);
 
     if (audio instanceof HTMLAudioElement && !$(audio).data('disabled')) {
         audio.play();
-
     }
     else {
         ttsProvider.previewTtsVoice(id);
