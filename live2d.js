@@ -527,10 +527,7 @@ async function playMotion(character, motion, force = false) {
 }
 
 async function playTalk(character, text) {
-
-
-
-    console.debug(DEBUG_PREFIX, 'Playing mouth animation for', character, 'message:', text);
+    console.debug(DEBUG_PREFIX,'Playing mouth animation for',character,'message:',text);
     // No model loaded for character
     if (models[character] === undefined)
         return;
@@ -539,13 +536,13 @@ async function playTalk(character, text) {
 
     // Character is already talking TODO: stop previous talk animation
     if (is_talking[character] !== undefined && is_talking[character] == true) {
-        console.debug(DEBUG_PREFIX, 'Character is already talking abort');
+        console.debug(DEBUG_PREFIX,'Character is already talking abort');
         while (is_talking[character]) {
             abortTalking[character] = true;
             await delay(100);
         }
         abortTalking[character] = false;
-        console.debug(DEBUG_PREFIX, 'Start new talk');
+        console.debug(DEBUG_PREFIX,'Start new talk');
         //return;
     }
 
@@ -561,7 +558,7 @@ async function playTalk(character, text) {
     }
 
     if (typeof model.internalModel.coreModel.addParameterValueById !== 'function') {
-        console.debug(DEBUG_PREFIX, 'Model has no addParameterValueById function cannot animate mouth');
+        console.debug(DEBUG_PREFIX,'Model has no addParameterValueById function cannot animate mouth');
         return;
     }
 
@@ -570,13 +567,15 @@ async function playTalk(character, text) {
     const duration = text.length * mouth_time_per_character;
     let turns = 0;
     let mouth_y = 0;
-    window.live2d_tts_bind = false;
-    while (((Date.now() - startTime) < duration) || true) {
+    window.live2d_tts_bind = false; // @4eckme
+    while ((Date.now() - startTime) < duration || true) { // @4eckme
 
+        // start @4eckme
         model.internalModel.coreModel.addParameterValueById(parameter_mouth_open_y_id, -100);
         while (window.live2d_tts_bind === false) {
             await delay(20);
         }
+        // end @4eckme
 
         if (abortTalking[character]) {
             console.debug(DEBUG_PREFIX,'Abort talking requested.');
@@ -588,13 +587,12 @@ async function playTalk(character, text) {
             console.debug(DEBUG_PREFIX,'Model destroyed during talking animation, abort');
             break;
         }
-         mouth_y = Math.sin((Date.now() - startTime));
 
+        mouth_y = Math.sin((Date.now() - startTime));
         model.internalModel.coreModel.addParameterValueById(parameter_mouth_open_y_id, mouth_y);
         //console.debug(DEBUG_PREFIX,"Mouth_y:", mouth_y, "VS",model.internalModel.coreModel.getParameterValueById(parameter_mouth_open_y_id), "remaining time", duration - (Date.now() - startTime));
         await delay(100 / mouth_open_speed);
         turns += 1;
-        
     }
 
     if (model?.internalModel?.coreModel !== undefined)
