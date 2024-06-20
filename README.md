@@ -6,7 +6,7 @@ If you use the latest stable version of SillyTavern and live2d extension as of t
 <SillyTavern>/public/scripts/extensions/tts/index.js
 <SillyTavern>/data/<default user>/extensions/Extension-Live2d/live2d.js
 ```
-<b>If you use other versions or replacing files leads to incorrect work of the application: then I marked my changes in the code as <u>@4eckme</u> - just add them to the above files (there is a little bit).</b>
+<b>If you use other versions or replacing files leads to incorrect work of the application: then I marked my changes in the code as "@4eckme" - just add them to the above files (there is a little bit).</b>
 <br>
 <br>
 <i>In some live2d models, mouth animations are not fully developed. Before using this code, make sure the mouth animations are working correctly.</i>
