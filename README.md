@@ -4,7 +4,7 @@
 If you use the latest stable version of SillyTavern and live2d extension as of today (06/20/2024), then you can simply replace these files:
 ```
 <SillyTavern>/public/scripts/extensions/tts/index.js
-<SillyTavern>/data/<default user>/extensions/Extension-Live2d/live2d.js
+<SillyTavern>/data/<default-user>/extensions/Extension-Live2d/live2d.js
 ```
 <b>If you use other versions or replacing files leads to incorrect work of the application: then I marked my changes in the code as "@4eckme" - just add them to the above files (there is a little bit).</b>
 <br>
